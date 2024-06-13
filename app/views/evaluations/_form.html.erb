@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :scenario_id, @task.scenario_id %>
+  <%= hidden_field_tag :task_id, @task.id %>
+  
   <div>
     <%= form.label :accuracy, style: "display: block" %>
     <%= form.number_field :accuracy %>
@@ -46,12 +49,10 @@
     <%= form.text_area :comments %>
   </div>
 
-  <div>
-    <%= form.label :task_id, style: "display: block" %>
-    <%= form.text_field :task_id %>
-  </div>
+  <br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Save" %>
+  </div>
   </div>
 <% end %>

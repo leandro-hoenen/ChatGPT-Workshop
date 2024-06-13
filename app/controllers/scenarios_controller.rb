@@ -1,5 +1,11 @@
 class ScenariosController < ApplicationController
-  before_action :set_scenario, only: %i[ show edit update destroy ]
+  before_action :set_scenario, only: %i[ show edit update destroy start ]
+
+  # Start the evaluation process
+  def start
+    @task = @scenario.tasks.first
+    redirect_to new_scenario_task_evaluation_path(@scenario, @task)
+  end
 
   # GET /scenarios or /scenarios.json
   def index

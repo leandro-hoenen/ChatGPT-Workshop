@@ -1,9 +1,9 @@
-<h1>New evaluation</h1>
+<h2><%= @scenario.name%></h2>
+<p><strong>Task:</strong> <%= @task.name %></p>
+<p><strong>Description:</strong> <%= @task.description %></p>
 
 <%= render "form", evaluation: @evaluation %>
 
 <br>
 
-<div>
-  <%= link_to "Back to evaluations", evaluations_path %>
-</div>
+

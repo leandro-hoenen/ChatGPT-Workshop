@@ -1,5 +1,14 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy next ]
+
+  def next
+    @next_task = @task.scenario.tasks.where('id > ?', @task.id).first
+    if @next_task
+      redirect_to new_scenario_task_evaluation_path(@task.scenario, @next_task)
+    else
+      redirect_to scenario_path(@task.scenario), notice: 'Scenario completed!'
+    end
+  end
 
   # GET /tasks or /tasks.json
   def index

@@ -1,5 +1,7 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ new create ]
+  before_action :set_scenario, only: %i[ new create ]
 
   # GET /evaluations or /evaluations.json
   def index
@@ -21,11 +23,12 @@ class EvaluationsController < ApplicationController
 
   # POST /evaluations or /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
-    @tasks = Task.all
+    @evaluation = @task.evaluations.new(evaluation_params)
+    @evaluation.task = @task
+
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to evaluation_url(@evaluation), notice: "Evaluation was successfully created." }
+        format.html { redirect_to next_scenario_task_path(@task.scenario, @task), notice: 'Evaluation was successfully created.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,6 +65,15 @@ class EvaluationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
+    end
+
+    def set_task
+      @task = Task.find(params[:task_id])
+      puts @task
+    end
+
+    def set_scenario
+      @scenario = Scenario.find(params[:scenario_id])
     end
 
     # Only allow a list of trusted parameters through.
