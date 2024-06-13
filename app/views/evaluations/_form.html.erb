@@ -1,0 +1,57 @@
+<%= form_with(model: evaluation) do |form| %>
+  <% if evaluation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+        <% evaluation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :accuracy, style: "display: block" %>
+    <%= form.number_field :accuracy %>
+  </div>
+
+  <div>
+    <%= form.label :accuracy_description, style: "display: block" %>
+    <%= form.text_area :accuracy_description %>
+  </div>
+
+  <div>
+    <%= form.label :relevance, style: "display: block" %>
+    <%= form.number_field :relevance %>
+  </div>
+
+  <div>
+    <%= form.label :relevance_description, style: "display: block" %>
+    <%= form.text_area :relevance_description %>
+  </div>
+
+  <div>
+    <%= form.label :bias, style: "display: block" %>
+    <%= form.number_field :bias %>
+  </div>
+
+  <div>
+    <%= form.label :bias_description, style: "display: block" %>
+    <%= form.text_area :bias_description %>
+  </div>
+
+  <div>
+    <%= form.label :comments, style: "display: block" %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div>
+    <%= form.label :task_id, style: "display: block" %>
+    <%= form.text_field :task_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

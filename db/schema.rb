@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_13_161538) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_170221) do
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "accuracy"
+    t.text "accuracy_description"
+    t.integer "relevance"
+    t.text "relevance_description"
+    t.integer "bias"
+    t.text "bias_description"
+    t.text "comments"
+    t.integer "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_evaluations_on_task_id"
+  end
+
   create_table "scenarios", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -27,5 +41,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_161538) do
     t.index ["scenario_id"], name: "index_tasks_on_scenario_id"
   end
 
+  add_foreign_key "evaluations", "tasks"
   add_foreign_key "tasks", "scenarios"
 end

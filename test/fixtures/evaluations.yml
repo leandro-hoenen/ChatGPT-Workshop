@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accuracy: 1
+  accuracy_description: MyText
+  relevance: 1
+  relevance_description: MyText
+  bias: 1
+  bias_description: MyText
+  comments: MyText
+  task: one
+
+two:
+  accuracy: 1
+  accuracy_description: MyText
+  relevance: 1
+  relevance_description: MyText
+  bias: 1
+  bias_description: MyText
+  comments: MyText
+  task: two
