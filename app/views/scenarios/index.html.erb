@@ -15,12 +15,18 @@
     <% @scenarios.each do |scenario| %>
       <tr>
         <td><%= link_to scenario.name, scenario %></td>
-        <td>
-          <%= link_to "Edit", edit_scenario_path(scenario), class: "btn btn-primary" %>
-        </td>
+        <% if current_user.lecturer? %>
+          <td>
+            <%= link_to "Edit", edit_scenario_path(scenario), class: "btn btn-primary" %>
+          </td>
+          <% else %>
+          <td>
+            <%= link_to 'Start Scenario', start_scenario_path(scenario), class: 'btn btn-primary' %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "New scenario", new_scenario_path, class: "btn btn-success" %>
+<% if current_user.lecturer? %>
+  <%= link_to "New scenario", new_scenario_path, class: "btn btn-success" %>
+<% end %>

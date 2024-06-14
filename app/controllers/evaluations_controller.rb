@@ -2,6 +2,7 @@ class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: %i[ show edit update destroy ]
   before_action :set_task, only: %i[ new create ]
   before_action :set_scenario, only: %i[ new create ]
+  before_action :authenticate_user!
 
   # GET /evaluations or /evaluations.json
   def index

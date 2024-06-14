@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy next ]
+  before_action :authenticate_user!
 
   def next
     @next_task = @task.scenario.tasks.where('id > ?', @task.id).first

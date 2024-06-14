@@ -1,5 +1,7 @@
 class ScenariosController < ApplicationController
   before_action :set_scenario, only: %i[ show edit update destroy start ]
+  before_action :authenticate_user!
+  before_action :check_lecturer, only: [:new, :create, :edit, :update, :destroy]
 
   # Start the evaluation process
   def start
@@ -64,6 +66,15 @@ class ScenariosController < ApplicationController
   end
 
   private
+    def check_lecturer
+      unless current_user.lecturer?
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: "Not authorized" }
+        format.json { head :no_content }
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_scenario
       @scenario = Scenario.find(params[:id])
