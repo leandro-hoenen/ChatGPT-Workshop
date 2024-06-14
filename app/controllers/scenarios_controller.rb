@@ -6,7 +6,11 @@ class ScenariosController < ApplicationController
   # Start the evaluation process
   def start
     @task = @scenario.tasks.first
-    redirect_to new_scenario_task_evaluation_path(@scenario, @task)
+    if @task
+      redirect_to new_scenario_task_evaluation_path(@scenario, @task)
+    else
+      redirect_to scenario_path(@scenario), notice: 'No tasks available for this scenario'
+    end
   end
 
   # GET /scenarios or /scenarios.json
