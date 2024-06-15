@@ -1,0 +1,59 @@
+<!-- app/views/scenarios/evaluations.html.erb -->
+<h1>Evaluations for <%= @scenario.name %></h1>
+
+<% @evaluations_by_task.each do |task, evaluations| %>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2>Task: <%= task.name %></h2>
+    </div>
+    <div class="card-body">
+      <p><%= task.description %></p>
+      <% if evaluations.any? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Accuracy</th>
+              <th>Accuracy Description</th>
+              <th>Relevance</th>
+              <th>Relevance Description</th>
+              <th>Bias</th>
+              <th>Bias Description</th>
+              <th>Comments</th>
+              <th>Submitted At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if evaluations.empty? %>
+                <tr>
+                  <td>
+                    <p>No evaluations for this task.</p>
+                  </td>
+                </tr>
+                </tr>
+              </tr>
+            <% else %>
+              <% evaluations.each do |evaluation| %>
+                <tr>
+                  <td><%= evaluation.accuracy %></td>
+                  <td><%= evaluation.accuracy_description %></td>
+                  <td><%= evaluation.relevance %></td>
+                  <td><%= evaluation.relevance_description %></td>
+                  <td><%= evaluation.bias %></td>
+                  <td><%= evaluation.bias_description %></td>
+                  <td><%= evaluation.comments %></td>
+                  <td><%= evaluation.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        </table>
+        </table>
+      <% else %>
+        <p>No evaluations for this task.</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Scenarios', scenarios_path %>

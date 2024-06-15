@@ -18,6 +18,7 @@
         <% if current_user.lecturer? %>
           <td>
             <%= link_to "Edit", edit_scenario_path(scenario), class: "btn btn-primary" %>
+            <%= link_to 'Evaluations', evaluations_scenario_path(scenario), class: 'btn btn-info' %>
           </td>
           <% else %>
           <td>

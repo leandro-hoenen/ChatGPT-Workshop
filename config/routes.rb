@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :scenarios do
     member do
       get 'start'
+      get 'evaluations'
     end
     resources :tasks, only: %i[show] do
       member do

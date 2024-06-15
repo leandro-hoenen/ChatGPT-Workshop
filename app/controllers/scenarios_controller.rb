@@ -1,5 +1,5 @@
 class ScenariosController < ApplicationController
-  before_action :set_scenario, only: %i[ show edit update destroy start ]
+  before_action :set_scenario, only: %i[ show edit update destroy start evaluations ]
   before_action :authenticate_user!
   before_action :check_lecturer, only: [:new, :create, :edit, :update, :destroy]
 
@@ -67,6 +67,20 @@ class ScenariosController < ApplicationController
       format.html { redirect_to scenarios_url, notice: "Scenario was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def evaluations
+    # This line retrieves all tasks associated with a specific scenario, including their evaluations. It does so by:
+    # 1. Preloading the evaluations for each task to optimize query performance and avoid N+1 query issues.
+    # 2. Ordering the tasks by their ID in ascending order to ensure a consistent sequence.
+    # 3. Mapping over each task to create a new array where each element is a two-element array:
+    #    - The first element is the task itself.
+    #    - The second element is an array of the task's evaluations, ordered by their creation date in ascending order.
+    # The result is assigned to @evaluations_by_task, providing a structured representation of tasks and their evaluations.
+    # @tasks = @scenario.tasks
+    puts "This is a test Scenario"
+    @task = @scenario.tasks.first
+    @evaluations_by_task = @scenario.tasks.includes(:evaluations).order(:id).map { |task| [task, task.evaluations.order(:created_at)] }
   end
 
   private
