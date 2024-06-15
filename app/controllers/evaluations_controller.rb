@@ -26,6 +26,7 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = @task.evaluations.new(evaluation_params)
     @evaluation.task = @task
+    @evaluation.user = current_user
 
     respond_to do |format|
       if @evaluation.save

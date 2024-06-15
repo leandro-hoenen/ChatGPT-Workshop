@@ -9,46 +9,38 @@
     <div class="card-body">
       <p><%= task.description %></p>
       <% if evaluations.any? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Accuracy</th>
-              <th>Accuracy Description</th>
-              <th>Relevance</th>
-              <th>Relevance Description</th>
-              <th>Bias</th>
-              <th>Bias Description</th>
-              <th>Comments</th>
-              <th>Submitted At</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if evaluations.empty? %>
-                <tr>
-                  <td>
-                    <p>No evaluations for this task.</p>
-                  </td>
-                </tr>
-                </tr>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Accuracy</th>
+                <th>Accuracy Description</th>
+                <th>Relevance</th>
+                <th>Relevance Description</th>
+                <th>Bias</th>
+                <th>Bias Description</th>
+                <th>Comments</th>
+                <th>Submitted At</th>
+                <th>Submitted By</th>
               </tr>
-            <% else %>
+            </thead>
+            <tbody>
               <% evaluations.each do |evaluation| %>
                 <tr>
                   <td><%= evaluation.accuracy %></td>
-                  <td><%= evaluation.accuracy_description %></td>
+                  <td class="text-wrap"><%= evaluation.accuracy_description %></td>
                   <td><%= evaluation.relevance %></td>
-                  <td><%= evaluation.relevance_description %></td>
+                  <td class="text-wrap"><%= evaluation.relevance_description %></td>
                   <td><%= evaluation.bias %></td>
-                  <td><%= evaluation.bias_description %></td>
-                  <td><%= evaluation.comments %></td>
+                  <td class="text-wrap"><%= evaluation.bias_description %></td>
+                  <td class="text-wrap"><%= evaluation.comments %></td>
                   <td><%= evaluation.created_at %></td>
+                  <td><%= evaluation.user.email %></td>
                 </tr>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
-        </table>
-        </table>
+            </tbody>
+          </table>
+        </div>
       <% else %>
         <p>No evaluations for this task.</p>
       <% end %>
