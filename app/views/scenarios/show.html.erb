@@ -13,9 +13,12 @@
       <%= link_to "Back to scenarios", scenarios_path, class: "btn btn-secondary" %>
     </div>
     <% if current_user.lecturer? %>
-    <div class="card-footer text-left">
-      <%= button_to "Delete", @scenario, method: :delete, class: "btn btn-danger ml-2", data: { confirm: "Are you sure you want to delete this scenario?" } %>
-    </div>
+      <div class="card-footer text-left">
+        <%= link_to 'Evaluations', evaluations_scenario_path(@scenario), class: 'btn btn-info' %>
+      </div>
+      <div class="card-footer text-left">
+        <%= button_to "Delete", @scenario, method: :delete, class: "btn btn-danger ml-2", data: { confirm: "Are you sure you want to delete this scenario?" } %>
+      </div>
     <% end %>
   </div>
 
