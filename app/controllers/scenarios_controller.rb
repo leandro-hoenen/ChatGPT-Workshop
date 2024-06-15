@@ -77,10 +77,12 @@ class ScenariosController < ApplicationController
     #    - The first element is the task itself.
     #    - The second element is an array of the task's evaluations, ordered by their creation date in ascending order.
     # The result is assigned to @evaluations_by_task, providing a structured representation of tasks and their evaluations.
-    # @tasks = @scenario.tasks
-    puts "This is a test Scenario"
-    @task = @scenario.tasks.first
+    # @tasks = @scenario.tasks 
     @evaluations_by_task = @scenario.tasks.includes(:evaluations).order(:id).map { |task| [task, task.evaluations.order(:created_at)] }
+    
+    if @evaluations_by_task.empty?
+      redirect_to scenarios_path, notice: 'No evaluations available for this scenario'
+    end
   end
 
   private
