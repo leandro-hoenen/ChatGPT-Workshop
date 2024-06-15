@@ -1,6 +1,6 @@
-<%= form_with(model: evaluation) do |form| %>
+<%= form_with(model: evaluation, class: "form") do |form| %>
   <% if evaluation.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
 
       <ul>
@@ -14,45 +14,44 @@
   <%= hidden_field_tag :scenario_id, @task.scenario_id %>
   <%= hidden_field_tag :task_id, @task.id %>
   
-  <div>
-    <%= form.label :accuracy, style: "display: block" %>
-    <%= form.number_field :accuracy %>
+  <div class="form-group">
+    <%= form.label :accuracy, class: "control-label" %>
+    <%= form.number_field :accuracy, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :accuracy_description, style: "display: block" %>
-    <%= form.text_area :accuracy_description %>
+  <div class="form-group">
+    <%= form.label :accuracy_description, class: "control-label" %>
+    <%= form.text_area :accuracy_description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :relevance, style: "display: block" %>
-    <%= form.number_field :relevance %>
+  <div class="form-group">
+    <%= form.label :relevance, class: "control-label" %>
+    <%= form.number_field :relevance, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :relevance_description, style: "display: block" %>
-    <%= form.text_area :relevance_description %>
+  <div class="form-group">
+    <%= form.label :relevance_description, class: "control-label" %>
+    <%= form.text_area :relevance_description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :bias, style: "display: block" %>
-    <%= form.number_field :bias %>
+  <div class="form-group">
+    <%= form.label :bias, class: "control-label" %>
+    <%= form.number_field :bias, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :bias_description, style: "display: block" %>
-    <%= form.text_area :bias_description %>
+  <div class="form-group">
+    <%= form.label :bias_description, class: "control-label" %>
+    <%= form.text_area :bias_description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :comments, style: "display: block" %>
-    <%= form.text_area :comments %>
+  <div class="form-group">
+    <%= form.label :comments, class: "control-label" %>
+    <%= form.text_area :comments, class: "form-control" %>
   </div>
 
   <br>
 
-  <div>
-    <%= form.submit "Next" %>
-  </div>
+  <div class="form-group">
+    <%= form.submit "Next", class: "btn btn-primary" %>
   </div>
 <% end %>
